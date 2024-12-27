@@ -1,3 +1,11 @@
+#The server reads sensor data from a serial port and updates a shared dictionary (sensor_data) in real-time.
+#Each sensor (humidity, temperature, pressure) is exposed as a CoAP resource via the SensorResource class.
+#Clients send GET requests to sensor endpoints, and the server responds with JSON data or an error if the resource is not found.
+#The read_serial_data function parses and updates sensor values continuously in an asynchronous loop.
+#The server operates a CoAP context to handle client requests while running non-blocking serial data reading.
+
+
+
 import asyncio
 import serial
 from aiocoap import resource, Context, Message
