@@ -8,6 +8,11 @@
 
 import asyncio
 import serial
+
+#mports essential components 
+#from the aiocoap library, which is a Python implementation
+#of the Constrained Application Protocol (CoAP).
+#
 from aiocoap import resource, Context, Message
 import json
 
@@ -16,17 +21,24 @@ SERIAL_PORT = '/dev/ttyV0'
 BAUD_RATE = 9600
 
 # Dictionary to store sensor data
+#The dictionary sensor_data serves as a centralized storage for 
+#the latest values and units of different sensors
+
 sensor_data = {
     "humidity": {"value": 0.0, "unit": "%"},
     "temperature": {"value": 0.0, "unit": "C"},
     "pressure": {"value": 0.0, "unit": "hPa"}
 }
-
+#------------------------------------------------------------------------
+#Declares that SensorResource is a subclass of resource.
+#Resource, making it a custom CoAP resource that inherits the functionality provided by aiocoap.
+#
 class SensorResource(resource.Resource):
     def __init__(self, sensor_name):
         super().__init__()
         self.sensor_name = sensor_name
-
+# render_get, is part of the SensorResource class 
+# and is responsible for handling incoming GET requests for a specific sensor resource. 
     async def render_get(self, request):
         data = sensor_data.get(self.sensor_name)
         if data:
@@ -87,6 +99,10 @@ async def main():
 
     # Keep the server running
     await asyncio.get_running_loop().create_future()
+#----------------------------------------------------------------------------------------------
 
+# This construct serves as the entry point for the script and ensures the main() 
+# function is executed only when the script is run directly, 
+# not when it is imported as a module into another script.
 if __name__ == "__main__":
     asyncio.run(main())
