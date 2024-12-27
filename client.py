@@ -1,3 +1,13 @@
+#  The server reads sensor data (humidity, temperature, and pressure) from a serial port,
+# updates a shared dictionary, and serves this data via CoAP endpoints (/humidity, /temperature, /pressure).
+
+# The client interacts with the user, allowing them to select a sensor using numeric options (1, 2, or 3) 
+# mapped in a dictionary, and fetches the corresponding data by making GET requests to the server.
+
+# The server responds with JSON data, and the client parses and displays the sensor's value and unit to the user.
+
+
+
 # SERVER CODE
 #Dependencies:
 
@@ -136,7 +146,7 @@ async def fetch_sensor_data(sensor_key):
             print(f"[ERROR] Invalid JSON received: {payload}")
     except Exception as e:
         print(f"Failed to fetch data from {sensor_endpoint}: {e}")
-
+#-------------------------------------------------------------------------------------------
 async def main():
     """Main function to interact with the user."""
     print("Available sensors:")
