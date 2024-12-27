@@ -49,6 +49,10 @@ class SensorResource(resource.Resource):
             print(f"[ERROR] Resource '{self.sensor_name}' not found.")
             return Message(payload=b"Resource not found", code=404)
 #---------------------------------------------------------------------
+
+#The function read_serial_data reads and parses data from a serial port asynchronously and updates a global dictionary sensor_data
+
+
 async def read_serial_data():
     """Read data from the serial port and update sensor_data."""
     try:
@@ -80,8 +84,10 @@ async def read_serial_data():
             ser.close()
 
 #-------------------------------------------------------------------------------------
+# setting up a CoAP server and integrating sensor data handling.
+
 async def main():
-    root = resource.Site()
+    root = resource.Site()    #  create the root for CoAP resources.
 
     # Register resources for individual sensors
     root.add_resource(("humidity",), SensorResource("humidity"))
