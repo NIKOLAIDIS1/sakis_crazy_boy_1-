@@ -1,21 +1,29 @@
 # SERVER CODE
+#Dependencies:
+
+#    asyncio: For asynchronous programming.
+ #   serial: For serial port communication.
+  #  aiocoap: For building and handling CoAP resources and messages.
+  #  json: For parsing and generating JSON data.'
 
 import asyncio
 import serial
 from aiocoap import resource, Context, Message
 import json
-
+#-------------------------------------------------------------------------------------------
 # Serial port configuration
+#These constants configure the serial port where the server reads sensor data.
 SERIAL_PORT = '/dev/ttyV0'
 BAUD_RATE = 9600
-
+#-----------------------------------------------------------------------------------------------
 # Dictionary to store sensor data
 sensor_data = {
     "humidity": {"value": 0.0, "unit": "%"},
     "temperature": {"value": 0.0, "unit": "C"},
     "pressure": {"value": 0.0, "unit": "hPa"}
 }
-
+# SensorResource Class:
+#Each instance of the class represents a single sensor, such as "humidity," "temperature," or "pressure."
 class SensorResource(resource.Resource):
     """Resource to serve individual sensor data."""
     def __init__(self, sensor_name):
@@ -84,7 +92,7 @@ from aiocoap import Context, Message, GET
 import json
 
 # Define the server address and available sensors
-SERVER_URL = "coap://localhost"
+SERVER_URL = "coap://localhost"    #SERVER_URL = "coap://localhost" specifies the server location.
 SENSORS = {
     "1": "humidity",
     "2": "temperature",
