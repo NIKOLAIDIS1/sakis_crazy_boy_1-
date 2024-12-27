@@ -1,3 +1,11 @@
+# 
+
+# The simulation arduino.py script simulates an Arduino device by 
+# generating random values for humidity, temperature, and pressure.
+# These values are formatted into a string and sent over a 
+# simulated serial port (/dev/ttyV0) to mimic real sensor data output.
+#
+#
 import random
 import time
 import serial
