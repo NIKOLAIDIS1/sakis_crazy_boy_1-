@@ -30,6 +30,9 @@ class SensorResource(resource.Resource):
         super().__init__()
         self.sensor_name = sensor_name
 
+ 
+# handle incoming GET requests to retrieve sensor data via a
+# CoAP (Constrained Application Protocol) server.
     async def render_get(self, request):
         data = sensor_data.get(self.sensor_name)
         if data:
