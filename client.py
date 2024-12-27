@@ -22,6 +22,9 @@ sensor_data = {
     "temperature": {"value": 0.0, "unit": "C"},
     "pressure": {"value": 0.0, "unit": "hPa"}
 }
+
+#--------------------------------------------------------------------------
+
 # SensorResource Class:
 #Each instance of the class represents a single sensor, such as "humidity," "temperature," or "pressure."
 class SensorResource(resource.Resource):
