@@ -1,0 +1,29 @@
+// Simulating sensor data (humidity, temperature, pressure)
+// Sends data via the Serial port.
+
+void setup() {
+  // Initialize the Serial communication at 9600 baud
+  Serial.begin(9600);
+  while (!Serial) {
+    ; // Wait for the serial port to connect
+  }
+  Serial.println("Serial communication started.");
+}
+
+void loop() {
+  // Generate random sensor data
+  float humidity = random(50, 101) / 10.0;     // Humidity values between 5.0 and 10.0
+  float temperature = random(50, 101) / 10.0; // Temperature values between 5.0 and 10.0
+  float pressure = random(50, 101) / 10.0;    // Pressure values between 5.0 and 10.0
+
+  // Format the data as a string
+  String data = "Humidity: " + String(humidity, 2) + 
+                ", Temperature: " + String(temperature, 2) + 
+                ", Pressure: " + String(pressure, 2);
+
+  // Send the data over the Serial port
+  Serial.println(data);
+
+  // Simulate a 1-second delay between readings
+  delay(1000);
+}
